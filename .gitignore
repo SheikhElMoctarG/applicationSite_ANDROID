@@ -13,4 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-./src/main/com.sheikh.exe_apk/dotEnv.java
+./src/main/com/sheikh/exe_apk/dotEnv.java
