@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">exe-apk</string>
+
+    <style name="size_text_logo">EXE - APK</style>
 </resources>
