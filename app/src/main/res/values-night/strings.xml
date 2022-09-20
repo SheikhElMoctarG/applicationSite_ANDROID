@@ -1,9 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">exe-apk</string>
+    <string name="button_tryagian">إعادةالمحاولة</string>
     <string name="button_exit">الخروج</string>
     <string name="title_if_internet_not_found">لا يوجد إتصال بالأنترنت</string>
     <string name="description_if_no_internet">لا يملك هاتفك اتصالا بالأنترنت الأن، الرجاء التحقق من اتصالك بالأنترنت وإعادة المحاولة، فالتطبيق غير متاح دون إتصال بالأنترنت.</string>
     <string name="tryagian">إعادة المحاولة</string>
-
-    <style name="size_text_logo">EXE - APK</style>
 </resources>
