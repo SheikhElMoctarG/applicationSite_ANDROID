@@ -11,6 +11,7 @@ import org.json.JSONException;
 
 public class HomeActivity extends AppCompatActivity {
     JSONArray posts = null;
+    MainActivity mainActivity = new MainActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,10 @@ public class HomeActivity extends AppCompatActivity {
         AlertDialog.Builder dialog = new AlertDialog.Builder(HomeActivity.this);
         dialog.setMessage(description);
         dialog.setCancelable(false);
-        dialog.setPositiveButton(getResources().getString(R.string.tryagian), (dialogInterface, i) -> dialogInterface.cancel());
+        dialog.setPositiveButton(getResources().getString(R.string.tryagian), (dialogInterface, i) -> {
+            dialogInterface.cancel();
+            mainActivity.getPosts();
+        });
         dialog.setNegativeButton(getResources().getString(R.string.button_exit), (dialogInterface, i) -> finish());
         AlertDialog alert = dialog.create();
         alert.show();
