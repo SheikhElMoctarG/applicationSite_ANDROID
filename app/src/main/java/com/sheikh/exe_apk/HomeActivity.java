@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 public class HomeActivity extends AppCompatActivity {
     JSONArray posts = null;
@@ -34,13 +35,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     // error not connected to internet
-    public Boolean isConnected(Bundle extras){
+    public Boolean isConnected(Bundle extras)  {
+        try {
+            posts = new JSONArray(extras.getString("posts"));
+            return true;
+        }catch (Exception e){
+            return false;
+        }
 
-      try {
-         posts = new JSONArray(extras.getString("posts"));
-         return true;
-      } catch (Exception e){
-         return false;
-      }
     }
 }

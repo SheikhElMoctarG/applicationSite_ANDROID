@@ -38,14 +38,11 @@ public class MainActivity extends AppCompatActivity {
         name = findViewById(R.id.text_logo);
         logo.setImageResource(R.drawable.logo_e);
         getPosts();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                intent.putExtra("posts", posts.toString());
-                MainActivity.this.startActivity(intent);
-                MainActivity.this.finish();
-            }
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            intent.putExtra("posts", (posts == null)? null : posts.toString());
+            MainActivity.this.startActivity(intent);
+            MainActivity.this.finish();
         }, 10000);
     }
 
