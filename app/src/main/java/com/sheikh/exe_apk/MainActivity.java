@@ -3,6 +3,7 @@ package com.sheikh.exe_apk;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.VoiceInteractor;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         logo = findViewById(R.id.logo);
         name = findViewById(R.id.text_logo);
         logo.setImageResource(R.drawable.logo_e);
-        getPosts();
+        getPosts(MainActivity.this);
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             intent.putExtra("posts", (posts == null)? null : posts.toString());
@@ -46,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         }, 10000);
     }
 
-    public void getPosts(){
-        RequestQueue queue = Volley.newRequestQueue(this);;
+    public void getPosts(Context OurAction){
+        RequestQueue queue = Volley.newRequestQueue(OurAction);;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, new dotEnv().URL_SERVER, response -> {
             try {
                 posts = new JSONArray(response);
@@ -58,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }, error -> {
-            Log.i("ErrorInAPI", "getPosts: " + error);
+            HomeActivity homeActivity = new HomeActivity();
+            homeActivity.createDialog(R.string.description_if_no_internet, MainActivity.this);
+
         });
         queue.add(stringRequest);
     }

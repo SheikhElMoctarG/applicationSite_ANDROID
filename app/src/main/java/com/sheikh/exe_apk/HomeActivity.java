@@ -3,6 +3,8 @@ package com.sheikh.exe_apk;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -21,19 +23,20 @@ public class HomeActivity extends AppCompatActivity {
             TextView textView = findViewById(R.id.textView);
             textView.setText("مرحبا الشيخ، انت لديك اتصالا بالانترنت.");
         } else {
-            createDialog(getResources().getString(R.string.description_if_no_internet));
+            createDialog(R.string.description_if_no_internet, HomeActivity.this);
         }
     }
     // create new a dialog window
-    public void createDialog(String description){
-        AlertDialog.Builder dialog = new AlertDialog.Builder(HomeActivity.this);
-        dialog.setMessage(description);
+    public void createDialog(int description, Context OurActivity){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(OurActivity);
+        Resources res = OurActivity.getResources();
+        dialog.setMessage(res.getString(description));
         dialog.setCancelable(false);
-        dialog.setPositiveButton(getResources().getString(R.string.tryagian), (dialogInterface, i) -> {
+        dialog.setPositiveButton(res.getString(R.string.tryagian), (dialogInterface, i) -> {
             dialogInterface.cancel();
-            mainActivity.getPosts();
+            mainActivity.getPosts(HomeActivity.this);
         });
-        dialog.setNegativeButton(getResources().getString(R.string.button_exit), (dialogInterface, i) -> finish());
+        dialog.setNegativeButton(res.getString(R.string.button_exit), (dialogInterface, i) -> finish());
         AlertDialog alert = dialog.create();
         alert.show();
     }
