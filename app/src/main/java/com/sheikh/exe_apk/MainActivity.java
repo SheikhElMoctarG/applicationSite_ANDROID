@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView logo;
     TextView name;
     JSONArray posts = null;
+    Boolean isConnected ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +39,17 @@ public class MainActivity extends AppCompatActivity {
         logo = findViewById(R.id.logo);
         name = findViewById(R.id.text_logo);
         logo.setImageResource(R.drawable.logo_e);
-        getPosts(MainActivity.this);
+        getPosts();
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-            intent.putExtra("posts", (posts == null)? null : posts.toString());
-            MainActivity.this.startActivity(intent);
-            MainActivity.this.finish();
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                intent.putExtra("posts", (posts == null) ? null : posts.toString());
+                MainActivity.this.startActivity(intent);
+                MainActivity.this.finish();
         }, 10000);
     }
 
-    public void getPosts(Context OurAction){
-        RequestQueue queue = Volley.newRequestQueue(OurAction);;
+    public void getPosts(){
+        RequestQueue queue = Volley.newRequestQueue(this);;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, new dotEnv().URL_SERVER, response -> {
             try {
                 posts = new JSONArray(response);
@@ -59,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }, error -> {
-            HomeActivity homeActivity = new HomeActivity();
-            homeActivity.createDialog(R.string.description_if_no_internet, MainActivity.this);
 
         });
         queue.add(stringRequest);
