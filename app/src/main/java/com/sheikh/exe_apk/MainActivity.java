@@ -29,13 +29,11 @@ public class MainActivity extends AppCompatActivity {
     ImageView logo;
     TextView name;
     JSONArray posts = null;
-    Boolean isConnected ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
         logo = findViewById(R.id.logo);
         name = findViewById(R.id.text_logo);
         logo.setImageResource(R.drawable.logo_e);
