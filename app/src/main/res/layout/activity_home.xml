@@ -22,7 +22,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_bottom_linear"
+                android:background="@color/color_top_linear"
                 android:layoutDirection="rtl"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
