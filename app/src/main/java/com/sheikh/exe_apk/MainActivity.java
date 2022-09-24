@@ -2,13 +2,18 @@ package com.sheikh.exe_apk;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(intent);
                 MainActivity.this.finish();
         }, 10000);
+        // change the status bar color
+        changeSBarColor(R.color.white, this);
     }
 
     public void getPosts(){
@@ -61,5 +68,14 @@ public class MainActivity extends AppCompatActivity {
 
         });
         queue.add(stringRequest);
+    }
+    // method to change the status bar android
+    public void changeSBarColor(int color, Activity activity){
+        if (Build.VERSION.SDK_INT >= 21){
+            Window window = activity.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(activity.getResources().getColor(color));
+        }
     }
 }

@@ -8,4 +8,6 @@
     <style name="size_text_logo">EXE - APK</style>
 
     <string name="homeTitle">الصفحة الرئيسية</string>
+    <string name="shareApp">مشاركة التطبيق</string>
+    <string name="shareing_text">مرحبا، ادعوك لإستخدام التطبيق الرائع والبسيط في الاستخدام، يمكنك هذا التطبيق من الاطلاع على اخر الأخبار التقنية وايضا بعض الشروحات النافعة والمميزة، رابط التحميل هو :</string>
 </resources>

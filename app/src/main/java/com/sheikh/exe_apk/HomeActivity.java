@@ -5,9 +5,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -25,7 +29,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        se
         Bundle extras = getIntent().getExtras();
         if (isConnected(extras)) {
             TextView textView = findViewById(R.id.textView);
@@ -33,8 +36,12 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             createDialog(R.string.description_if_no_internet, HomeActivity.this);
         }
+        // share button
+        shareApp();
+        // change the status bar color
+        new MainActivity().changeSBarColor(R.color.color_top_linear, this);
     }
-    // restart the info after agian
+    // restart the info after again
     public void restart(){
         if (isConnected){
             TextView textView = findViewById(R.id.textView);
@@ -84,5 +91,17 @@ public class HomeActivity extends AppCompatActivity {
             isConnected = false;
         });
         queue.add(stringRequest);
+    }
+
+    // method for share app to your friends
+    public void shareApp(){
+        ImageView share = findViewById(R.id.buttonShare);
+        share.setOnClickListener((View view) ->{
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                String text = getResources().getString(R.string.shareing_text)+ "\n" + new dotEnv().LINK_APP_ON_GOOGLEPLAY;
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, text);
+                startActivity(intent);
+        });
     }
 }
