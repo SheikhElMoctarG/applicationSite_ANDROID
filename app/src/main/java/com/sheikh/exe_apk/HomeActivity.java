@@ -31,8 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Bundle extras = getIntent().getExtras();
         if (isConnected(extras)) {
-            TextView textView = findViewById(R.id.textView);
-            textView.setText("مرحبا الشيخ، انت لديك اتصالا بالانترنت.");
+
         } else {
             createDialog(R.string.description_if_no_internet, HomeActivity.this);
         }
