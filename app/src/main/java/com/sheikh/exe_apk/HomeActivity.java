@@ -2,6 +2,8 @@ package com.sheikh.exe_apk;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,9 +20,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.sheikh.exe_apk.Adapter.MyAdapture;
+import com.sheikh.exe_apk.Model.ListItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     JSONArray posts = null;
@@ -31,7 +38,11 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Bundle extras = getIntent().getExtras();
         if (isConnected(extras)) {
-
+            try {
+                connectRecyclerView();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         } else {
             createDialog(R.string.description_if_no_internet, HomeActivity.this);
         }
@@ -43,8 +54,7 @@ public class HomeActivity extends AppCompatActivity {
     // restart the info after again
     public void restart(){
         if (isConnected){
-            TextView textView = findViewById(R.id.textView);
-            textView.setText("مرحبا الشيخ، انت لديك اتصالا بالانترنت.");
+
         }
     }
     // create new a dialog window
@@ -102,5 +112,22 @@ public class HomeActivity extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_TEXT, text);
                 startActivity(intent);
         });
+    }
+
+    // methode to connect to recyclerview
+    public void connectRecyclerView() throws JSONException {
+        RecyclerView postsList = findViewById(R.id.recyclerView);
+        List<ListItem> listOfPosts = new ArrayList<>();
+        postsList.setHasFixedSize(true);
+        postsList.setLayoutManager(new LinearLayoutManager(this));
+//        for (int i = 0; i < 5; i++) {
+//            Log.d("forloopWitharray", (String) posts.get(i));
+//        }
+        listOfPosts.add(new ListItem("first title"));
+        listOfPosts.add(new ListItem("second title"));
+        listOfPosts.add(new ListItem("third title"));
+        listOfPosts.add(new ListItem("fourth title"));
+        MyAdapture myAdapture = new MyAdapture(this, listOfPosts);
+        postsList.setAdapter(myAdapture);
     }
 }

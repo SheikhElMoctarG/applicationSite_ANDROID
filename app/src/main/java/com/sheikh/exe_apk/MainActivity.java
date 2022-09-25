@@ -1,6 +1,8 @@
 package com.sheikh.exe_apk;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.VoiceInteractor;
@@ -24,10 +26,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.sheikh.exe_apk.Adapter.MyAdapture;
+import com.sheikh.exe_apk.Model.ListItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -78,4 +85,7 @@ public class MainActivity extends AppCompatActivity {
             window.setStatusBarColor(activity.getResources().getColor(color));
         }
     }
+
+    // methode to connect to recyclerView
+
 }
