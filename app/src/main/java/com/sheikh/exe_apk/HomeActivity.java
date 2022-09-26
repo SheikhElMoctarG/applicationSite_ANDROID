@@ -25,9 +25,11 @@ import com.sheikh.exe_apk.Model.ListItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
     JSONArray posts = null;
@@ -120,13 +122,10 @@ public class HomeActivity extends AppCompatActivity {
         List<ListItem> listOfPosts = new ArrayList<>();
         postsList.setHasFixedSize(true);
         postsList.setLayoutManager(new LinearLayoutManager(this));
-//        for (int i = 0; i < 5; i++) {
-//            Log.d("forloopWitharray", (String) posts.get(i));
-//        }
-        listOfPosts.add(new ListItem("first title"));
-        listOfPosts.add(new ListItem("second title"));
-        listOfPosts.add(new ListItem("third title"));
-        listOfPosts.add(new ListItem("fourth title"));
+        for (int i = 0; i < 5; i++) {
+            JSONObject post = posts.getJSONObject(i);
+            listOfPosts.add(new ListItem(post.getString("title")));
+        }
         MyAdapture myAdapture = new MyAdapture(this, listOfPosts);
         postsList.setAdapter(myAdapture);
     }
