@@ -9,24 +9,39 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="245sp"
+        android:layout_height="wrap_content"
         android:layoutDirection="rtl">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <Button
+                android:id="@+id/show_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/more_read_button"
+                android:text="@string/show_more"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="281dp" />
+
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:tint="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/ic_time"
-                tools:layout_editor_absoluteY="179dp" />
+                tools:layout_editor_absoluteY="227dp" />
 
             <TextView
                 android:id="@+id/title_textView"
@@ -51,6 +66,27 @@
                 app:layout_constraintVertical_bias="0.0"
                 tools:layout_editor_absoluteX="0dp"
                 tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toTopOf="@+id/show_post"
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                app:layout_constraintVertical_bias="0.351"
+                tools:layout_editor_absoluteX="327dp" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="395dp"
+                android:layout_height="34dp"
+                android:text="TextView"
+                android:textDirection="rtl"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.517"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="176dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
