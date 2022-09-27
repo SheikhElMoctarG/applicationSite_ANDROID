@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sheikh.exe_apk.Model.ListItem;
 import com.sheikh.exe_apk.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,7 +34,10 @@ public class MyAdapture extends RecyclerView.Adapter<MyAdapture.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyAdapture.ViewHolder holder, int position) {
         ListItem item = listItems.get(position);
+        Picasso.get().load(item.getImage_link()).error(R.drawable.logo_e).into(holder.image);
         holder.title.setText(item.getTitle());
+        holder.description.setText(item.getDescription());
+        holder.timeAgo.setText(item.getTimeAgo());
     }
 
     @Override
@@ -40,10 +46,18 @@ public class MyAdapture extends RecyclerView.Adapter<MyAdapture.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        private ImageView image;
         private TextView title;
+        private TextView description;
+        private TextView timeAgo;
+        private Button read_more;
         public ViewHolder(@NonNull View view) {
             super(view);
-            title = view.findViewById(R.id.title_in_row);
+            image = view.findViewById(R.id.image_post);
+            title = view.findViewById(R.id.title_textView);
+            description = view.findViewById(R.id.description);
+            timeAgo = view.findViewById(R.id.time);
+            read_more = view.findViewById(R.id.show_post);
         }
     }
 }
