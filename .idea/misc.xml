@@ -3,9 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/appsite/app/src/main/res/drawable/b1.xml" value="0.21388888888888888" />
+        <entry key="..\:/appsite/app/src/main/res/drawable/b2.xml" value="0.21388888888888888" />
+        <entry key="..\:/appsite/app/src/main/res/drawable/b3.xml" value="0.21388888888888888" />
+        <entry key="..\:/appsite/app/src/main/res/drawable/bg1.xml" value="0.1" />
+        <entry key="..\:/appsite/app/src/main/res/drawable/bg2.xml" value="0.1" />
+        <entry key="..\:/appsite/app/src/main/res/drawable/bg3.xml" value="0.1" />
+        <entry key="..\:/appsite/app/src/main/res/drawable/cloud.xml" value="0.21388888888888888" />
         <entry key="..\:/appsite/app/src/main/res/drawable/ic_launcher_background.xml" value="0.13796296296296295" />
+        <entry key="..\:/appsite/app/src/main/res/drawable/more_read_button.xml" value="0.21388888888888888" />
         <entry key="..\:/appsite/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/appsite/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/appsite/app/src/main/res/layout/first.xml" value="0.5" />
         <entry key="..\:/appsite/app/src/main/res/layout/more_read_button.xml" value="0.18" />
         <entry key="..\:/appsite/app/src/main/res/layout/post_row.xml" value="0.33" />
       </map>

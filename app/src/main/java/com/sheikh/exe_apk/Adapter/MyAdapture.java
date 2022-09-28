@@ -16,6 +16,7 @@ import com.sheikh.exe_apk.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Locale;
 
 public class MyAdapture extends RecyclerView.Adapter<MyAdapture.ViewHolder> {
     private List<ListItem> listItems ;
@@ -34,9 +35,9 @@ public class MyAdapture extends RecyclerView.Adapter<MyAdapture.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyAdapture.ViewHolder holder, int position) {
         ListItem item = listItems.get(position);
-        Picasso.get().load(item.getImage_link()).error(R.drawable.logo_e).into(holder.image);
-        holder.title.setText(item.getTitle());
-        holder.description.setText(item.getDescription());
+        Picasso.get().load(item.getImage_link()).fit().centerCrop().error(R.drawable.logo_e).into(holder.image);
+        holder.title.setText(slice(item.getTitle(), 50));
+        holder.description.setText(slice(item.getDescription(), 80));
         holder.timeAgo.setText(item.getTimeAgo());
     }
 
@@ -58,6 +59,13 @@ public class MyAdapture extends RecyclerView.Adapter<MyAdapture.ViewHolder> {
             description = view.findViewById(R.id.description);
             timeAgo = view.findViewById(R.id.time);
             read_more = view.findViewById(R.id.show_post);
+        }
+    }
+    public String slice(String text, int max){
+        if (text.length() > max){
+            return text.substring(0, max-3).concat("...");
+        } else {
+            return text;
         }
     }
 }

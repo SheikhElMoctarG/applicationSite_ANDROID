@@ -10,85 +10,94 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutDirection="rtl">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_margin="3sp"
+        android:layout_marginEnd="12dp"
+        android:layoutDirection="rtl"
+        app:cardCornerRadius="10dp">
+        <!--    All content    -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--      linear for image      -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150sp">
 
-            <Button
-                android:id="@+id/show_post"
+                <ImageView
+                    android:id="@+id/image_post"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="image of the article"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </LinearLayout>
+            <!--     linear for title and description       -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/more_read_button"
-                android:text="@string/show_more"
-                android:textColor="@color/white"
-                android:textColorHighlight="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="281dp" />
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="6dp"
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="19dp"
-                android:layout_height="19dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:tint="#000000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/ic_time"
-                tools:layout_editor_absoluteY="227dp" />
+                <TextView
+                    android:id="@+id/title_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:ellipsize="end"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:text="العنوان"
+                    android:textColor="@color/black"
+                    android:textDirection="rtl" />
 
-            <TextView
-                android:id="@+id/title_textView"
-                android:layout_width="395dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="العنوان"
-                android:textColor="@color/black"
-                android:textDirection="rtl"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="135dp" />
-
-            <ImageView
-                android:id="@+id/image_post"
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLength="80"
+                    android:text="TextView"
+                    android:textDirection="rtl" />
+            </LinearLayout>
+            <!--    linear of the time    -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="123sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                tools:layout_editor_absoluteX="0dp"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
-                android:layout_height="17dp"
-                android:text="TextView"
-                app:layout_constraintBottom_toTopOf="@+id/show_post"
-                app:layout_constraintTop_toBottomOf="@+id/description"
-                app:layout_constraintVertical_bias="0.351"
-                tools:layout_editor_absoluteX="327dp" />
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:srcCompat="@drawable/ic_time"
+                    app:tint="#000000" />
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="395dp"
-                android:layout_height="34dp"
-                android:text="TextView"
-                android:textDirection="rtl"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.517"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="176dp" />
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="17dp"
+                    android:text="TextView" />
+            </LinearLayout>
+            <!--        linear of button          -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+                <Button
+                    android:id="@+id/show_post"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/more_read_button"
+                    android:text="@string/show_more"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

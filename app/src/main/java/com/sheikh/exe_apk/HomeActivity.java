@@ -124,7 +124,7 @@ public class HomeActivity extends AppCompatActivity {
         postsList.setLayoutManager(new LinearLayoutManager(this));
         for (int i = 0; i < 5; i++) {
             JSONObject post = posts.getJSONObject(i);
-            listOfPosts.add(new ListItem(post.getString("title")));
+            listOfPosts.add(new ListItem(post.getString("image"),post.getString("title"), post.getString("description"), post.getString("date")));
         }
         MyAdapture myAdapture = new MyAdapture(this, listOfPosts);
         postsList.setAdapter(myAdapture);
