@@ -1,6 +1,7 @@
 package com.sheikh.exe_apk.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.sheikh.exe_apk.R;
 
@@ -14,12 +15,13 @@ public class timeAgo {
         Calendar calendar = Calendar.getInstance();
         return calendar.getTime();
     }
-
     public static String getTimeAgo(String date1, Context ctx){
         Date date = null;
         try {
-            date = new SimpleDateFormat("DD, yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(date1);
-        } catch (ParseException e) {}
+            date = new SimpleDateFormat("EEE, dd mm yyyy HH:mm:ss").parse(date1);
+        } catch (ParseException e) {
+            Log.d("parserDate", e.getMessage());
+        }
         if(date == null) {
             return null;
         }
