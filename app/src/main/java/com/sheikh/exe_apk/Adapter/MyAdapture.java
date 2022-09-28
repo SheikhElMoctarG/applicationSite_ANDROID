@@ -38,7 +38,7 @@ public class MyAdapture extends RecyclerView.Adapter<MyAdapture.ViewHolder> {
         Picasso.get().load(item.getImage_link()).fit().centerCrop().error(R.drawable.logo_e).into(holder.image);
         holder.title.setText(slice(item.getTitle(), 50));
         holder.description.setText(slice(item.getDescription(), 80));
-        holder.timeAgo.setText(item.getTimeAgo());
+        holder.timeAgo.setText(timeAgo.getTimeAgo(item.getTimeAgo(), context));
     }
 
     @Override

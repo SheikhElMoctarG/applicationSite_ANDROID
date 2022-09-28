@@ -11,4 +11,28 @@
     <string name="shareApp">مشاركة التطبيق</string>
     <string name="shareing_text">مرحبا، ادعوك لإستخدام التطبيق الرائع والبسيط في الاستخدام، يمكنك هذا التطبيق من الاطلاع على اخر الأخبار التقنية وايضا بعض الشروحات النافعة والمميزة، رابط التحميل هو :</string>
     <string name="show_more">قراءة المزيد</string>
+    <!-- Date Util -->
+    <string name="date_util_term_less">اقل من</string>
+    <string name="date_util_term_a">واحد</string>
+    <string name="date_util_term_an">واحد</string>
+
+    <string name="date_util_unit_second">ثانية</string>
+    <string name="date_util_unit_seconds">ثواني</string>
+    <string name="date_util_unit_minute">دقيقة</string>
+    <string name="date_util_unit_minutes">دقائق</string>
+    <string name="date_util_unit_hour">ساعة</string>
+    <string name="date_util_unit_hours">ساعات</string>
+    <string name="date_util_unit_day">يوم</string>
+    <string name="date_util_unit_days">ايام</string>
+    <string name="date_util_unit_month">شهر</string>
+    <string name="date_util_unit_months">اشهر</string>
+    <string name="date_util_unit_year">سنة</string>
+    <string name="date_util_unit_years">سنوات</string>
+
+    <string name="date_util_prefix_lt">اقل من 1</string>
+    <string name="date_util_prefix_about">حوالي</string>
+    <string name="date_util_prefix_over">يزيد على </string>
+    <string name="date_util_prefix_almost">اكثر</string>
+
+    <string name="date_util_suffix">منذو</string>
 </resources>
