@@ -2,8 +2,18 @@ package com.sheikh.exe_apk.Model;
 
 public class ListItem {
     private String title;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
     private String description;
     private String timeAgo;
+    private String link;
 
     public String getTitle() {
         return title;
@@ -39,10 +49,11 @@ public class ListItem {
 
     private String image_link;
 
-    public ListItem( String image_link, String title, String description, String timeAgo) {
+    public ListItem(String image_link, String title, String description, String timeAgo, String link) {
         this.title = title;
         this.description = description;
         this.timeAgo = timeAgo;
         this.image_link = image_link;
+        this.link = link;
     }
 }

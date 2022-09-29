@@ -1,7 +1,6 @@
 package com.sheikh.exe_apk;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,9 +11,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,7 +26,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
     JSONArray posts = null;
@@ -124,7 +120,7 @@ public class HomeActivity extends AppCompatActivity {
         postsList.setLayoutManager(new LinearLayoutManager(this));
         for (int i = 0; i < new dotEnv().LINGTH_OF_POSTS; i++) {
             JSONObject post = posts.getJSONObject(i);
-            listOfPosts.add(new ListItem(post.getString("image"),post.getString("title"), post.getString("description"), post.getString("date")));
+            listOfPosts.add(new ListItem(post.getString("image"),post.getString("title"), post.getString("description"), post.getString("date"), post.getString("link")));
         }
         MyAdapture myAdapture = new MyAdapture(this, listOfPosts);
         postsList.setAdapter(myAdapture);

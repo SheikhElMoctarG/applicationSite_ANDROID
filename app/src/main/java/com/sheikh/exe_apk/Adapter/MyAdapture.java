@@ -1,6 +1,7 @@
 package com.sheikh.exe_apk.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sheikh.exe_apk.DetailsActivity;
 import com.sheikh.exe_apk.Model.ListItem;
 import com.sheikh.exe_apk.R;
+import com.sheikh.exe_apk.dotEnv;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -39,6 +42,8 @@ public class MyAdapture extends RecyclerView.Adapter<MyAdapture.ViewHolder> {
         holder.title.setText(slice(item.getTitle(), 50));
         holder.description.setText(slice(item.getDescription(), 80));
         holder.timeAgo.setText(timeAgo.getTimeAgo(item.getTimeAgo(), context));
+        holder.url = item.getLink();
+        holder.titleS = item.getTitle();
     }
 
     @Override
@@ -52,6 +57,8 @@ public class MyAdapture extends RecyclerView.Adapter<MyAdapture.ViewHolder> {
         private TextView description;
         private TextView timeAgo;
         private Button read_more;
+        private String url ;
+        private String titleS;
         public ViewHolder(@NonNull View view) {
             super(view);
             image = view.findViewById(R.id.image_post);
@@ -59,6 +66,13 @@ public class MyAdapture extends RecyclerView.Adapter<MyAdapture.ViewHolder> {
             description = view.findViewById(R.id.description);
             timeAgo = view.findViewById(R.id.time);
             read_more = view.findViewById(R.id.show_post);
+            read_more.setOnClickListener((view2)->{
+                Intent intent = new Intent(context, DetailsActivity.class);
+                intent.putExtra("url", url);
+                intent.putExtra("title", titleS);
+                intent.putExtra("password", new dotEnv().PASSWORD_KEY);
+                context.startActivity(intent);
+            });
         }
     }
     public String slice(String text, int max){
