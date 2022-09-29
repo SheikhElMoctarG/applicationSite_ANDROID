@@ -54,9 +54,9 @@ public class HomeActivity extends AppCompatActivity {
         new MainActivity().changeSBarColor(R.color.color_top_linear, this);
     }
     // restart the info after again
-    public void restart(){
+    public void restart() throws JSONException {
         if (isConnected){
-
+            connectRecyclerView();
         }
     }
     // create new a dialog window
@@ -122,7 +122,7 @@ public class HomeActivity extends AppCompatActivity {
         List<ListItem> listOfPosts = new ArrayList<>();
         postsList.setHasFixedSize(true);
         postsList.setLayoutManager(new LinearLayoutManager(this));
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < new dotEnv().LINGTH_OF_POSTS; i++) {
             JSONObject post = posts.getJSONObject(i);
             listOfPosts.add(new ListItem(post.getString("image"),post.getString("title"), post.getString("description"), post.getString("date")));
         }
