@@ -48,12 +48,21 @@ public class DetailsActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.i("Data_form_server", error.getMessage());
             }
         }){
+            // for add headers
             @Override
-            protected Map<String, String> getParams(){
-                Map<String, String> params = new HashMap<>();
+            public Map<String, String> getHeaders()  {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+            // for add body data
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("url", url);
                 params.put("title", title);
                 params.put("authentication", password);
