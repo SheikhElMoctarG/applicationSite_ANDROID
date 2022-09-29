@@ -68,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, new dotEnv().URL_SERVER, response -> {
             try {
                 posts = new JSONArray(response);
-                for(int i=0; i<= posts.length()-1; i++){
-                    Log.i("posts", posts.getString(i));
-                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -88,7 +85,5 @@ public class MainActivity extends AppCompatActivity {
             window.setStatusBarColor(activity.getResources().getColor(color));
         }
     }
-
-    // methode to connect to recyclerView
 
 }
