@@ -15,6 +15,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +51,10 @@ public class DetailsActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.i("Data_form_server", error.getMessage());
+                Log.i("Data_form_server", "Error: " + error
+                        + "\nStatus Code " + error.networkResponse.statusCode
+                        + "\nResponse Data " + Arrays.toString(error.networkResponse.data)
+                        + "\nCause " + error.getCause());
             }
         }){
             // for add headers
@@ -60,13 +66,18 @@ public class DetailsActivity extends AppCompatActivity {
             }
             // for add body data
             @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String> params = new HashMap<String, String>();
+            public Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<>();
                 params.put("url", url);
                 params.put("title", title);
-                params.put("authentication", password);
+                params.put("authentication", "password");
+                Log.i("Data_form_server", "getParams: " + params);
+
                 return params;
+            }
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
             }
         };
         requestQueue.add(stringRequest);
