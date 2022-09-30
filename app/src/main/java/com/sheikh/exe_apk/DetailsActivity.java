@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -66,7 +68,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
             // for add body data
             @Override
-            public Map<String, String> getParams()  {
+            public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("url", url);
                 params.put("title", title);
@@ -81,5 +83,34 @@ public class DetailsActivity extends AppCompatActivity {
             }
         };
         requestQueue.add(stringRequest);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, new dotEnv().URL_SERVER + "/post", null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.i("Data_form_server", response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("Data_form_server", error.toString());
+            }
+        }{
+            // for add headers
+            @Override
+            public Map<String, String> getHeaders()  {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+            // for add body data
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("url", url);
+                params.put("title", title);
+                params.put("authentication", "password");
+                Log.i("Data_form_server", "getParams: " + params);
+
+                return params;
+            });
     }
 }
