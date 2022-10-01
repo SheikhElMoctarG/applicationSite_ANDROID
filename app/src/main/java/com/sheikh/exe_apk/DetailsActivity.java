@@ -44,7 +44,7 @@ public class DetailsActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject res = new JSONObject(response);
-                    Log.i("Data_form_server", res.toString());
+                    Log.i("Data_form_server", res.getString("title"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -53,10 +53,6 @@ public class DetailsActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.i("Data_form_server", "Error: " + error
-                        + "\nStatus Code " + error.networkResponse.statusCode
-                        + "\nResponse Data " + Arrays.toString(error.networkResponse.data)
-                        + "\nCause " + error.getCause());
             }
         }){
             // for add headers
@@ -64,53 +60,12 @@ public class DetailsActivity extends AppCompatActivity {
             public Map<String, String> getHeaders()  {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Content-Type", "application/json");
+                headers.put("url", url);
+                headers.put("title", title);
+                headers.put("authentication", password);
                 return headers;
-            }
-            // for add body data
-            @Override
-            public Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("url", url);
-                params.put("title", title);
-                params.put("authentication", "password");
-                Log.i("Data_form_server", "getParams: " + params);
-
-                return params;
-            }
-            @Override
-            public String getBodyContentType() {
-                return "application/json";
             }
         };
         requestQueue.add(stringRequest);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, new dotEnv().URL_SERVER + "/post", null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.i("Data_form_server", response.toString());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("Data_form_server", error.toString());
-            }
-        }{
-            // for add headers
-            @Override
-            public Map<String, String> getHeaders()  {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-            // for add body data
-            @Override
-            public Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("url", url);
-                params.put("title", title);
-                params.put("authentication", "password");
-                Log.i("Data_form_server", "getParams: " + params);
-
-                return params;
-            });
     }
 }
