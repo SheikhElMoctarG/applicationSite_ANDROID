@@ -102,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
 
     // method for share app to your friends
     public void shareApp(){
-        ImageView share = findViewById(R.id.buttonShare);
+        ImageView share = findViewById(R.id.buttonButton);
         share.setOnClickListener((View view) ->{
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 String text = getResources().getString(R.string.shareing_text)+ "\n" + new dotEnv().LINK_APP_ON_GOOGLEPLAY;
