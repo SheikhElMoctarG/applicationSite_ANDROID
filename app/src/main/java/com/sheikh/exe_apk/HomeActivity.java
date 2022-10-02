@@ -142,6 +142,10 @@ public class HomeActivity extends AppCompatActivity {
     public void loadAd(AdView adView){
         MobileAds.initialize(this, initializationStatus -> {
         });
+        List<String> testDeviceIds = Arrays.asList("6592D4D85854E8B0F97AD70BA7556E55");
+        RequestConfiguration configuration =
+                new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
+        MobileAds.setRequestConfiguration(configuration);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
         adView.setAdListener(new AdListener() {
@@ -159,6 +163,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onAdFailedToLoad(LoadAdError adError) {
                 // Code to be executed when an ad request fails.
+                Log.i("admobAreLoaded", adError.toString());
             }
 
             @Override
@@ -170,7 +175,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
-                Log.i("admobAreLoaded", "Done");
+
             }
 
             @Override
