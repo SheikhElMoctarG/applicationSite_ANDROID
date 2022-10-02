@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,6 +41,9 @@ public class DetailsActivity extends AppCompatActivity {
         // button back
         ImageView button = findViewById(R.id.buttonBack);
         buttonBack(button);
+        // load ads
+        AdView adView = findViewById(R.id.adView);
+        new HomeActivity().loadAd(adView);
     }
     // method to get data of article
     public void getData(){
