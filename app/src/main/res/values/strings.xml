@@ -36,4 +36,7 @@
 
     <string name="date_util_suffix">منذو</string>
     <string name="details_text">التفاصيل</string>
+
+<!--  admob  -->
+    <string name="appId">ca-app-pub-3539470707140848~1695374098</string>
 </resources>
