@@ -2,8 +2,14 @@ package com.sheikh.exe_apk;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -31,6 +37,9 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         // called method for connect to server and get html code from page.
         getData();
+        // button back
+        ImageView button = findViewById(R.id.buttonBack);
+        buttonBack(button);
     }
     // method to get data of article
     public void getData(){
@@ -39,21 +48,19 @@ public class DetailsActivity extends AppCompatActivity {
         String title = extras.getString("title");
         String password = extras.getString("password");
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, new dotEnv().URL_SERVER + "/post", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject res = new JSONObject(response);
-                    Log.i("Data_form_server", res.getString("title"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, new dotEnv().URL_SERVER + "/post", response -> {
+            try {
+                JSONObject res = new JSONObject(response);
+                ProgressBar progressBar = findViewById(R.id.loading);
+                progressBar.setVisibility(View.INVISIBLE);
+                WebView content = findViewById(R.id.webView);
+                content.loadData(res.getString("html"),  "text/html; charset=utf-8","UTF-8");
+                content.setVisibility(View.VISIBLE);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
+        }, error -> {
         }){
             // for add headers
             @Override
@@ -67,5 +74,11 @@ public class DetailsActivity extends AppCompatActivity {
             }
         };
         requestQueue.add(stringRequest);
+    }
+    // button for the back
+    public void buttonBack(ImageView button){
+        button.setOnClickListener(view -> {
+            onBackPressed();
+        });
     }
 }

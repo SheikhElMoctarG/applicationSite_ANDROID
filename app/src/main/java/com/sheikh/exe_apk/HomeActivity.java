@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -86,9 +87,6 @@ public class HomeActivity extends AppCompatActivity {
             isConnected = true;
             try {
                 posts = new JSONArray(response);
-                for(int i=0; i<= posts.length()-1; i++){
-                    Log.i("posts", posts.getString(i));
-                }
                 restart();
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -115,6 +113,7 @@ public class HomeActivity extends AppCompatActivity {
     // methode to connect to recyclerview
     public void connectRecyclerView() throws JSONException {
         RecyclerView postsList = findViewById(R.id.recyclerView);
+        ProgressBar progressBar = findViewById(R.id.loading_home);
         List<ListItem> listOfPosts = new ArrayList<>();
         postsList.setHasFixedSize(true);
         postsList.setLayoutManager(new LinearLayoutManager(this));
@@ -122,6 +121,7 @@ public class HomeActivity extends AppCompatActivity {
             JSONObject post = posts.getJSONObject(i);
             listOfPosts.add(new ListItem(post.getString("image"),post.getString("title"), post.getString("description"), post.getString("date"), post.getString("link")));
         }
+        progressBar.setVisibility(View.INVISIBLE);
         MyAdapture myAdapture = new MyAdapture(this, listOfPosts);
         postsList.setAdapter(myAdapture);
     }
