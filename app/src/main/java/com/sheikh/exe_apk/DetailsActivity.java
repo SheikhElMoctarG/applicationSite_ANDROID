@@ -58,7 +58,7 @@ public class DetailsActivity extends AppCompatActivity {
                 ProgressBar progressBar = findViewById(R.id.loading);
                 progressBar.setVisibility(View.INVISIBLE);
                 WebView content = findViewById(R.id.webView);
-                content.loadData(res.getString("html"),  "text/html; charset=utf-8","UTF-8");
+                content.loadData(addHtml(res.getString("html")),  "text/html; charset=utf-8","UTF-8");
                 content.setVisibility(View.VISIBLE);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -84,5 +84,8 @@ public class DetailsActivity extends AppCompatActivity {
         button.setOnClickListener(view -> {
             onBackPressed();
         });
+    }
+    public String addHtml(String html){
+        return "<div style='font-family: Cairo, sans-serif; direction: rtl;'>"+html+"</div>";
     }
 }
