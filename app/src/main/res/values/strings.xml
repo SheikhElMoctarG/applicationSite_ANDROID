@@ -38,6 +38,6 @@
     <string name="details_text">التفاصيل</string>
 
 <!--  admob  -->
-    <string name="appId">ca-app-pub-3539470707140848~1695374098</string>
-    <string name="bannerId">ca-app-pub-3539470707140848/9769019823</string>
+    <string name="appId">ca-app-pub-yyyyyyyy~yyyyyyyyy</string>
+    <string name="bannerId">ca-app-pub-yyyyyyyyy/yyyyy</string>
 </resources>

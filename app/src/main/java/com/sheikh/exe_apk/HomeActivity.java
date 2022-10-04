@@ -60,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         new MainActivity().changeSBarColor(R.color.color_top_linear, this);
         // load ads
         AdView adView = findViewById(R.id.adView);
-        loadAd(adView);
+        loadAd(adView, this);
     }
     // restart the info after again
     public void restart() throws JSONException {
@@ -139,13 +139,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     // admob method
-    public void loadAd(AdView adView){
-        MobileAds.initialize(this, initializationStatus -> {
+    public void loadAd(AdView adView, Context context){
+        MobileAds.initialize(context, initializationStatus -> {
         });
-        List<String> testDeviceIds = Arrays.asList("6592D4D85854E8B0F97AD70BA7556E55");
-        RequestConfiguration configuration =
-                new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
-        MobileAds.setRequestConfiguration(configuration);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
         adView.setAdListener(new AdListener() {

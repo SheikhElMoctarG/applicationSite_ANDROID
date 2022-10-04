@@ -32,15 +32,17 @@
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         app:adSize="BANNER"
-        app:adUnitId="@string/bannerId"
+        app:adUnitId="ca-app-pub-xxxxxxxxxxxxxxx/yyyyyyyyyy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0" >
+
+    </com.google.android.gms.ads.AdView>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

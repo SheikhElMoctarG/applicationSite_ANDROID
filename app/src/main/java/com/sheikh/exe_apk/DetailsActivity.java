@@ -43,7 +43,7 @@ public class DetailsActivity extends AppCompatActivity {
         buttonBack(button);
         // load ads
         AdView adView = findViewById(R.id.adView);
-        new HomeActivity().loadAd(adView);
+        new HomeActivity().loadAd(adView, this);
     }
     // method to get data of article
     public void getData(){
