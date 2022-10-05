@@ -42,8 +42,8 @@ public class DetailsActivity extends AppCompatActivity {
         ImageView button = findViewById(R.id.buttonBack);
         buttonBack(button);
         // load ads
-        AdView adView = findViewById(R.id.adView);
-        new HomeActivity().loadAd(adView, this);
+//        AdView adView = findViewById(R.id.adView); // ACTIVE THIS LINE TO ADD THE ADS
+//        new HomeActivity().loadAd(adView, this); // ACTIVE THIS LINE TO ADD THE ADS
     }
     // method to get data of article
     public void getData(){

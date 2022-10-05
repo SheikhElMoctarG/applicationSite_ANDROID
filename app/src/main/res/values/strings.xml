@@ -40,4 +40,6 @@
 <!--  admob  -->
     <string name="appId">ca-app-pub-yyyyyyyy~yyyyyyyyy</string>
     <string name="bannerId">ca-app-pub-yyyyyyyyy/yyyyy</string>
+    <string name="title_notification_test">لقد اصدرة شركة فيسبوك تطبيقا جديدا ومبتكر</string>
+    <string name="text_notification">اضعط هنا من اجل متابعة قراءة الخبر.</string>
 </resources>

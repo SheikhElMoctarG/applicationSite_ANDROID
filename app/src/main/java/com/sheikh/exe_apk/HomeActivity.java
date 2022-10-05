@@ -1,13 +1,19 @@
 package com.sheikh.exe_apk;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -59,8 +65,10 @@ public class HomeActivity extends AppCompatActivity {
         // change the status bar color
         new MainActivity().changeSBarColor(R.color.color_top_linear, this);
         // load ads
-        AdView adView = findViewById(R.id.adView);
-        loadAd(adView, this);
+        //AdView adView = findViewById(R.id.adView); // ACTIVE THIS LINE TO ADD THE ADS
+        // loadAd(adView, this); // ACTIVE THIS LINE TO ADD THE ADS
+        // active the notifications
+        notifications();
     }
     // restart the info after again
     public void restart() throws JSONException {
@@ -159,7 +167,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onAdFailedToLoad(LoadAdError adError) {
                 // Code to be executed when an ad request fails.
-                Log.i("admobAreLoaded", adError.toString());
             }
 
             @Override
@@ -180,5 +187,22 @@ public class HomeActivity extends AppCompatActivity {
                 // covers the screen.
             }
         });
+    }
+
+    // method to controlle the notifications
+    public void notifications(){
+        String notification_id = "New Posts";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel(notification_id, notification_id, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, notification_id)
+                .setSmallIcon(R.drawable.ic_new).setContentTitle(getResources().getString(R.string.title_notification_test))
+                .setContentText(getResources().getString(R.string.text_notification))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);
+        NotificationManagerCompat compat = NotificationManagerCompat.from(this);
+        compat.notify(1, builder.build());
     }
 }
