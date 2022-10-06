@@ -1,8 +1,10 @@
 package com.sheikh.exe_apk;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.TaskStackBuilder;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +12,7 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -50,6 +53,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        // for desible the auto dork mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         Bundle extras = getIntent().getExtras();
         if (isConnected(extras)) {
             try {
@@ -67,8 +72,11 @@ public class HomeActivity extends AppCompatActivity {
         // load ads
         //AdView adView = findViewById(R.id.adView); // ACTIVE THIS LINE TO ADD THE ADS
         // loadAd(adView, this); // ACTIVE THIS LINE TO ADD THE ADS
-        // active the notifications
-        notifications();
+        try {
+            notifications();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
     // restart the info after again
     public void restart() throws JSONException {
@@ -190,8 +198,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     // method to controlle the notifications
-    public void notifications(){
+    public void notifications(String link, String title) throws JSONException {
         String notification_id = "New Posts";
+        Intent notificationIntent = new Intent(this, DetailsActivity.class);
+        // we use first post as test
+        notificationIntent.putExtra("url", getPostTest("link"));
+        notificationIntent.putExtra("title", getPostTest("title"));
+        notificationIntent.putExtra("password", new dotEnv().PASSWORD_KEY);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addNextIntentWithParentStack(notificationIntent);
+        PendingIntent pendingIntent =
+                stackBuilder.getPendingIntent(0,
+                        PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel = new NotificationChannel(notification_id, notification_id, NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = getSystemService(NotificationManager.class);
@@ -201,8 +220,17 @@ public class HomeActivity extends AppCompatActivity {
                 .setSmallIcon(R.drawable.ic_new).setContentTitle(getResources().getString(R.string.title_notification_test))
                 .setContentText(getResources().getString(R.string.text_notification))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true);
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent);
         NotificationManagerCompat compat = NotificationManagerCompat.from(this);
         compat.notify(1, builder.build());
+    }
+    // method for test notifications only
+    public String getPostTest(String info) throws JSONException {
+        JSONObject post = posts.getJSONObject(2);
+        if (info == "title")
+            return post.getString(info);
+        else
+            return post.getString(info);
     }
 }
