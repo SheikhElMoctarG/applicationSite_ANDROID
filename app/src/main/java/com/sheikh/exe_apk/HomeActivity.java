@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -72,11 +73,6 @@ public class HomeActivity extends AppCompatActivity {
         // load ads
         //AdView adView = findViewById(R.id.adView); // ACTIVE THIS LINE TO ADD THE ADS
         // loadAd(adView, this); // ACTIVE THIS LINE TO ADD THE ADS
-        try {
-            notifications();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
     // restart the info after again
     public void restart() throws JSONException {
@@ -202,8 +198,8 @@ public class HomeActivity extends AppCompatActivity {
         String notification_id = "New Posts";
         Intent notificationIntent = new Intent(this, DetailsActivity.class);
         // we use first post as test
-        notificationIntent.putExtra("url", getPostTest("link"));
-        notificationIntent.putExtra("title", getPostTest("title"));
+        notificationIntent.putExtra("url", link);
+        notificationIntent.putExtra("title", title);
         notificationIntent.putExtra("password", new dotEnv().PASSWORD_KEY);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addNextIntentWithParentStack(notificationIntent);
@@ -225,12 +221,15 @@ public class HomeActivity extends AppCompatActivity {
         NotificationManagerCompat compat = NotificationManagerCompat.from(this);
         compat.notify(1, builder.build());
     }
-    // method for test notifications only
-    public String getPostTest(String info) throws JSONException {
-        JSONObject post = posts.getJSONObject(2);
-        if (info == "title")
-            return post.getString(info);
-        else
-            return post.getString(info);
+    // method to active app background
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(getApplicationContext(), "the onstop()", Toast.LENGTH_LONG).show();
+        try {
+            notifications("https://www.exe-apk.com/2022/09/powertoys.html", "anything");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
