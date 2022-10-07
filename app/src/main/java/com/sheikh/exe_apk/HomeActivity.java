@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -193,43 +194,5 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    // method to controlle the notifications
-    public void notifications(String link, String title) throws JSONException {
-        String notification_id = "New Posts";
-        Intent notificationIntent = new Intent(this, DetailsActivity.class);
-        // we use first post as test
-        notificationIntent.putExtra("url", link);
-        notificationIntent.putExtra("title", title);
-        notificationIntent.putExtra("password", new dotEnv().PASSWORD_KEY);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addNextIntentWithParentStack(notificationIntent);
-        PendingIntent pendingIntent =
-                stackBuilder.getPendingIntent(0,
-                        PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel = new NotificationChannel(notification_id, notification_id, NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel);
-        }
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, notification_id)
-                .setSmallIcon(R.drawable.ic_new).setContentTitle(getResources().getString(R.string.title_notification_test))
-                .setContentText(getResources().getString(R.string.text_notification))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent);
-        NotificationManagerCompat compat = NotificationManagerCompat.from(this);
-        compat.notify(1, builder.build());
-    }
-    // method to active app background
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Toast.makeText(getApplicationContext(), "the onstop()", Toast.LENGTH_LONG).show();
-        try {
-            notifications("https://www.exe-apk.com/2022/09/powertoys.html", "anything");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
